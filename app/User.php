@@ -12,7 +12,7 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
+     *create()を使いデータを保存するときはMODELファイルの中に$fillableを定義
      * @var array
      */
     protected $fillable = [
