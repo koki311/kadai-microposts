@@ -1,9 +1,7 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MicropostsController@index');
 
 // ユーザ登録
 ///signupにアクセスするとResisterControllerのshowRegistrationFormメソッドで処理
@@ -20,4 +18,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //認証付きルーティング(https://laraweb.net/practice/1854/)
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users','UsersController',['only'=>['index','show']]);
+    Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
