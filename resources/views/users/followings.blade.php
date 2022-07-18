@@ -3,15 +3,12 @@
 @section('content')
     <div class="row">
         <aside class="col-sm-4">
-            @include('users.card')    
+            @include('users.card')
         </aside>
         <div class="col-sm-8">
             @include('users.navtabs')
-            @if(Auth::id() == $user->id)
-                @include('microposts.form')
-            @endif
-            @include('microposts.microposts')
-                    
+            {{-- ユーザ一覧 --}}
+            @include('users.users')
         </div>
     </div>
 @endsection

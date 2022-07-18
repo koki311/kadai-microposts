@@ -17,6 +17,8 @@ class MicropostsController extends Controller
             $data = [
                 'user'=> $user,
                 'microposts'=>$microposts,];
+            //viewでユーザーや投稿の情報を表示したいとき、コントローラでそれをDBから取得
+            //viewの引数として渡す
         }
         
         return view('welcome',$data);

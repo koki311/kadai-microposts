@@ -17,6 +17,15 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 //認証付きルーティング(https://laraweb.net/practice/1854/)
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('users','UsersController',['only'=>['index','show']]);
-    Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
+    Route::group(['prefix' => 'users/{id}'],function(){
+        Route::post('follow','UserFollowController@store')->name('user.follow');
+        Route::delete('unfollow','UserFollowController@destroy')->name('user.unfollow');
+        Route::get('followings','UsersController@followings')->name('users.followings');
+        Route::get('followers','UsersController@followers')->name('users.followers');
+    });
+        Route::resource('users','UsersController',['only'=>['index','show']]);
+        Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
+
+//Route::resource('A','B',['only'=>['C']]);
+//AはURL　Bはコントローラー名　Ｃはアクション（https://qiita.com/sympe/items/9297f41d5f7a9d91aa11）
