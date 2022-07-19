@@ -47,5 +47,11 @@ class MicropostsController extends Controller
         return back();
     }
     
+    /**このmicropostをユーザがお気に入りする*/
+    public function favorites_users()
+    {
+        return $this->belongsToMany(Micropost::class,'favorites','micropost_id','user_id')->withTimestamps();
+    }
+    
     
 }
